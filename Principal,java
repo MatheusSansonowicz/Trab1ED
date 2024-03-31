@@ -1,0 +1,35 @@
+package trabalho;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Principal {
+
+     List<List<Integer>> listaPrincipal = gerarListas(5) ;
+
+     // Mostrar os conteúdos das listas
+     for (int i = 0; i < listaPrincipal.size(); i++) {
+         System.out.println("Lista " + (i + 1) + ": " + listaPrincipal.get(i));
+     }
+ }
+
+ // Função para gerar listas de tamanho aleatório com números aleatórios
+ public static List<List<Integer>> gerarListas(int tamanho) {
+     List<List<Integer>> listaPrincipal = new ArrayList<>();
+     Random random = new Random();
+
+     for (int i = 0; i < tamanho; i++) {
+         List<Integer> lista = new ArrayList<>();
+         int tamanhoDaLista = random.nextInt(tamanho) + 1; // Tamanho aleatório entre 1 e tamanho
+         for (int j = 0; j < tamanhoDaLista; j++) {
+             lista.add(random.nextInt(100)); // Números aleatórios de 0 a 99
+         }
+         listaPrincipal.add(lista);
+     }
+
+     return listaPrincipal;
+
+	}
+
+}
