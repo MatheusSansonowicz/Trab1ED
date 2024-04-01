@@ -50,24 +50,25 @@ public class Principal {
         }
         }
     
-    public static void mostrarNumerosUnicos(List<List<Integer>> listaGenerica) {
-        List<Integer> listaUnica = new ArrayList<>();
-        
-        for (List<Integer> listaInterna : listaGenerica) {
-            for (Integer valor : listaInterna) {
-                if (!listaRepeteTodos.contains(valor) && !listaLixeira.contains(valor) && !listaUnica.contains(valor)) {
-                    listaUnica.add(valor);
-                } else if (listaUnica.contains(valor)) {
-                    listaLixeira.add(valor);
-                    listaUnica.remove(valor); // Remover o número de listaUnica se já estiver presente
-                }
+   public static void mostrarNumerosUnicos(List<List<Integer>> listaGenerica) {
+    for (List<Integer> listaInterna : listaGenerica) {
+        for (int i = 0; i < listaInterna.size(); i++) {
+            Integer valor = listaInterna.get(i);
+            if (!listaRepeteTodos.contains(valor) && !listaLixeira.contains(valor) && !listaUnica.contains(valor)) {
+                listaUnica.add(valor);
+            } else if (listaUnica.contains(valor)) {
+                listaLixeira.add(valor);
+                listaUnica.remove(valor); // Remover o número de listaUnica se já estiver presente
+                i--; // Reduzir o índice para reprocessar o item removido
             }
         }
-        
-        // Exibir os valores que aparecem somente em uma das listas internas
-        System.out.println("Valores que aparecem somente em uma das listas:");
-        exibir(listaUnica);
     }
+
+    // Exibir os valores que aparecem somente em uma das listas internas
+    System.out.println("Valores que aparecem somente em uma lista:");
+    exibir(listaUnica);
+}
+
     
     //Principal
     public static void main(String[] args) {
