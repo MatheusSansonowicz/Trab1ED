@@ -96,6 +96,9 @@ public class Principal {
         
      // Exibir valores que aparecem em todas as listas internas
         exibirValoresRepetidos(listaGenerica);
+
+/// Exibir valores que aparecem apenas uma vez
+        mostrarNumerosUnico(listaGenerica)
     }
     
 }
