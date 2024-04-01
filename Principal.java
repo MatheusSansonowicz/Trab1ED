@@ -17,38 +17,37 @@ public class Principal {
     
     //método exibição repetidos
     
-    public static void exibirValoresRepetidos(List<List<Integer>> listaGenerica) {
-        List<Integer> listaRepeteTodos = new ArrayList<>();
-        
-        // Comparar as duas primeiras listas internas
-        List<Integer> primeiraLista = listaGenerica.get(0);
-        List<Integer> segundaLista = listaGenerica.get(1);
-        
-        for (Integer valor : primeiraLista) {
-            if (segundaLista.contains(valor) && !listaRepeteTodos.contains(valor)) {
-                listaRepeteTodos.add(valor);
+   public static void exibirValoresRepetidos(List<List<Integer>> listaGenerica) {
+    List<Integer> primeiraLista = listaGenerica.get(0);
+    List<Integer> segundaLista = listaGenerica.get(1);
+
+    for (Integer valor : primeiraLista) {
+        if (segundaLista.contains(valor) && !listaRepeteTodos.contains(valor)) {
+            listaRepeteTodos.add(valor);
+        }
+    }
+
+    for (int i = 2; i < listaGenerica.size(); i++) {
+        List<Integer> listaInterna = listaGenerica.get(i);
+        List<Integer> novaListaRepeteTodos = new ArrayList<>();
+        for (Integer valor : listaRepeteTodos) {
+            if (listaInterna.contains(valor)) {
+                novaListaRepeteTodos.add(valor);
             }
         }
-        
-        // Verificar se os valores repetidos estão em todas as outras listas internas
-        for (int i = 2; i < listaGenerica.size(); i++) {
-            List<Integer> listaInterna = listaGenerica.get(i);
-            for (Integer valor : listaRepeteTodos) {
-                if (!listaInterna.contains(valor)) {
-                    listaLixeira.add(valor); // Adicionar à lista lixeira se não estiver presente na lista interna
-                }
-            }
-        }
-        
-     // Se listaRepeteTodos estiver vazia, mostrar mensagem e sair do método
-        if (listaRepeteTodos.isEmpty()) {
-            System.out.println("Não há números que se repetem em todas as listas.");
-        } else {
-            // Exibir os valores que aparecem em todas as listas internas
-            System.out.println("Valores que aparecem em todas as listas:");
-            exibir(listaRepeteTodos);
-        }
-        }
+        listaRepeteTodos = novaListaRepeteTodos;
+    }
+
+    // Se listaRepeteTodos estiver vazia, mostrar mensagem e sair do método
+    if (listaRepeteTodos.isEmpty()) {
+        System.out.println("Não há números que se repetem em todas as listas.");
+    } else {
+        // Exibir os valores que aparecem em todas as listas internas
+        System.out.println("Valores que aparecem em todas as listas:");
+        exibir(listaRepeteTodos);
+    }
+}
+
     
    public static void mostrarNumerosUnicos(List<List<Integer>> listaGenerica) {
     for (List<Integer> listaInterna : listaGenerica) {
