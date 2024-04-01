@@ -7,6 +7,8 @@ import java.util.Random;
 public class Principal {
 	
 	private static List<Integer> listaLixeira = new ArrayList<>();
+	private static List<Integer> listaRepeteTodos = new ArrayList<>();
+	private static List<Integer> listaUnica = new ArrayList<>();
     
 	//método exibição
     public static void exibir(List<Integer> lista) {
@@ -36,11 +38,12 @@ public class Principal {
             }
         }
         listaRepeteTodos = novaListaRepeteTodos;
+        listaRepeteTodos.sort(null);
     }
 
     // Se listaRepeteTodos estiver vazia, mostrar mensagem e sair do método
     if (listaRepeteTodos.isEmpty()) {
-        System.out.println("Não há números que se repetem em todas as listas.");
+        System.out.println("Nao ha numeros que se repetem em todas as listas.");
     } else {
         // Exibir os valores que aparecem em todas as listas internas
         System.out.println("Valores que aparecem em todas as listas:");
@@ -55,6 +58,7 @@ public class Principal {
             Integer valor = listaInterna.get(i);
             if (!listaRepeteTodos.contains(valor) && !listaLixeira.contains(valor) && !listaUnica.contains(valor)) {
                 listaUnica.add(valor);
+                listaUnica.sort(null);
             } else if (listaUnica.contains(valor)) {
                 listaLixeira.add(valor);
                 listaUnica.remove(valor); // Remover o número de listaUnica se já estiver presente
@@ -72,15 +76,15 @@ public class Principal {
     //Principal
     public static void main(String[] args) {
         
-        List<Integer> lista = new ArrayList<Integer>();
+        //List<Integer> lista = new ArrayList<Integer>();
         Random gerador = new Random();
         
         
         List<List<Integer>> listaGenerica = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             List<Integer> listaInterna = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 5; j++) {
                 int valor = gerador.nextInt(400);
                 if (!listaInterna.contains(valor)) { // Verifique se o valor já está na lista interna
                     listaInterna.add(valor); // Adicione à lista interna
@@ -90,15 +94,18 @@ public class Principal {
             listaGenerica.add(listaInterna); // Adicione a lista interna à lista genérica
         }
         // Exiba todas as listas internas da lista genérica
+        int nlista = 1;
         for (List<Integer> listaInterna : listaGenerica) {
+        	System.out.println("Exibindo a lista "+nlista);
             exibir(listaInterna);
+            nlista++;
         }
         
      // Exibir valores que aparecem em todas as listas internas
         exibirValoresRepetidos(listaGenerica);
 
 /// Exibir valores que aparecem apenas uma vez
-        mostrarNumerosUnico(listaGenerica)
+        mostrarNumerosUnicos(listaGenerica);
     }
     
 }
